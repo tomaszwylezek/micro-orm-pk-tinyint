@@ -16,3 +16,4 @@ This repository serves as a base reproduction example, it contains basic setup w
 ## 
 Go to `./docker` and run `docker-compose up -d` to setup mysql db.
 Or define it on your own and point to it.
+Wait for db to start and run `yarn test`

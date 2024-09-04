@@ -47,21 +47,6 @@ test('should update schema without throwing on constraint because of wrong PK ty
   const generator = orm.getSchemaGenerator()
 
   // Throws on below
-  // DriverException: alter table `foo`.`not_tiny` add constraint `not_tiny_tiny_id_foreign` foreign key (`tiny_id`) references `foo`.`with_tiny` (`tiny_id`) on update cascade; - Referencing column 'tiny_id' and referenced column 'tiny_id' in foreign key constraint 'not_tiny_tiny_id_foreign' are incompatible.
   await generator.updateSchema({ schema: 'foo' })
 
-  // DB definitions
-
-  // CREATE TABLE `with_tiny` (
-  //   `tiny_id` int unsigned NOT NULL AUTO_INCREMENT, <---- NOTE: That should be tinyint
-  //   `name` varchar(255) NOT NULL,
-  //   PRIMARY KEY (`tiny_id`)
-  // ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-
-  // CREATE TABLE `not_tiny` (
-  //   `not_tiny_id` int unsigned NOT NULL AUTO_INCREMENT,
-  //   `tiny_id` tinyint unsigned NOT NULL,  <---- NOTE: There is correct one
-  //   PRIMARY KEY (`not_tiny_id`),
-  //   KEY `not_tiny_tiny_id_index` (`tiny_id`)
-  // ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 })
